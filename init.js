@@ -11,7 +11,7 @@ var config = {
 	gladiatorrotationvariance: 0.007,
 	arenamargin: 100,
 	ai: false,
-	aibuttonpresschance: 0.008,
+	aibuttonpresschance: 0.028,
 	hitboxes: false,
 	waitshakeintensity: 4,
 	transitionanimationrate: 1 / 100,

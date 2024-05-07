@@ -96,6 +96,8 @@ Gladiator.prototype.charge = function() {
 };
 
 Gladiator.prototype.update = function() {
+	// AI likes to charge a lot
+	if(config.ai && this.state == "charge" && this.letter != 'a') this.controlButtonIsPressed = false;
 	// Check if the state needs to be changed
 	if(this.controlButtonIsPressed) {
 		this.controlButtonIsPressed = false;
