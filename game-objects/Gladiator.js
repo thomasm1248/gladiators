@@ -55,12 +55,14 @@ Gladiator.prototype.wander = function() {
 };
 
 Gladiator.prototype.takeDamage = function() {
-	if(this.armor > 0) {
-		this.armor--;
-		this.armorHit = true;
-	} else {
-		this.dead = true;
+	for(var i = 0; i < this.armor; i++) {
+		if(Math.random() < config.armorprotectionchance) {
+			this.armor--;
+			this.armorHit = true;
+			return;
+		}
 	}
+	this.dead = true;
 };
 
 Gladiator.prototype.charge = function() {

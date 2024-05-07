@@ -19,6 +19,7 @@ var config = {
 	auctionovertime: 200,
 	goldpergame: 30,
 	disablef5: false,
+	armorprotectionchance: 0.3,
 	dummy: 0
 };
 
