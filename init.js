@@ -10,7 +10,7 @@ var config = {
 	gladiatorrotationfriction: 0.99,
 	gladiatorrotationvariance: 0.007,
 	arenamargin: 100,
-	ai: true,
+	ai: false,
 	aibuttonpresschance: 0.008,
 	hitboxes: false,
 	waitshakeintensity: 4,
@@ -18,7 +18,7 @@ var config = {
 	auctiontime: 400,
 	auctionovertime: 200,
 	goldpergame: 30,
-	disablef5: false,
+	disablef5: true,
 	armorprotectionchance: 0.3,
 	dummy: 0
 };
