@@ -16,7 +16,7 @@ function Gladiator(letter, name, pos) {
 	this.controlButtonIsPressed = false;
 	this.state = "wander"; // wander wait charge
 
-	this.gold = 0;
+	this.gold = 10; // Each gladiator starts with 10 gold
 
 	this.armor = 0;
 	this.armorHit = false; // used to make gladiator flash red when armor hit
