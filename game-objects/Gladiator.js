@@ -57,7 +57,7 @@ Gladiator.prototype.wander = function() {
 Gladiator.prototype.takeDamage = function() {
 	for(var i = 0; i < this.armor; i++) {
 		if(Math.random() < config.armorprotectionchance) {
-			this.armor--;
+			this.armor -= i + 1;
 			this.armorHit = true;
 			return;
 		}
