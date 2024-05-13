@@ -20,6 +20,7 @@ var config = {
 	goldpergame: 30,
 	disablef5: true,
 	armorprotectionchance: 0.3,
+	auctionmingold: 5,
 	dummy: 0
 };
 

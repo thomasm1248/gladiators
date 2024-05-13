@@ -129,12 +129,15 @@ Selection.prototype.update = function() {
 				nextState = "start-game";
 			}
 		}
-		// Start auction if spacebar is pressed
+		// Start auction if spacebar is pressed, and there's enough gold in circulation
 		if(key == 32) {
-			var auction = confirm("Start an auction?");
-			if(auction) {
-				nextState = "auction";
+			var numGladiatorsWithAuctionMin = 0;
+			for(var letter in this.gladiators) {
+				var gladiator = this.gladiators[letter];
+				if(gladiator === undefined) continue;
+				if(gladiator.gold >= config.auctionmingold) numGladiatorsWithAuctionMin++;
 			}
+			if(numGladiatorsWithAuctionMin >= 2) nextState = "auction";
 		}
 	}
 
