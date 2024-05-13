@@ -33,12 +33,14 @@ Gladiator.prototype.wander = function() {
 		this.rot -= Math.PI / 2;
 		this.rot *= -1;
 		this.rot += Math.PI / 2;
+		this.rotVel = 0;
 	}
 	if(
 	   this.pos.y < config.arenamargin ||
 	   this.pos.y > Model.I.canvas.height - config.arenamargin
 	   ) {
 		this.rot *= -1;
+		this.rotVel = 0;
 	}
 	if(this.pos.x < config.arenamargin) this.pos.x = config.arenamargin;
 	if(this.pos.y < config.arenamargin) this.pos.y = config.arenamargin;
