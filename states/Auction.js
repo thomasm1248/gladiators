@@ -157,7 +157,7 @@ items = [
 		name: "Increased Charge Speed",
 		rarity: 2,
 		code: function(gladiator) {
-			gladiator.chargeSpeed *= 1.5;
+			gladiator.chargeSpeed += config.chargespeedupgrade;
 		}
 	},
 	{

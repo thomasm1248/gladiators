@@ -21,6 +21,7 @@ var config = {
 	disablef5: true,
 	armorprotectionchance: 0.3,
 	auctionmingold: 5,
+	chargespeedupgrade: 2,
 	dummy: 0
 };
 
