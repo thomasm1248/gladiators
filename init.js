@@ -22,6 +22,7 @@ var config = {
 	armorprotectionchance: 0.3,
 	auctionmingold: 5,
 	chargespeedupgrade: 2,
+	gameovertime: 100,
 	dummy: 0
 };
 

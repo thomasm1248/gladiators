@@ -9,6 +9,9 @@ function Game(gladiators) {
 
 	// Keep track of rank gladiator would get if the died right now
 	this.deadGladiators = [];
+
+	this.gameEnded = false;
+	this.gameOverTimer = config.gameovertime;
 }
 
 Game.prototype.handleGladiatorControls = function() {
@@ -44,6 +47,7 @@ Game.prototype.updateGladiators = function() {
 };
 
 Game.prototype.endGame = function() {
+	this.gameEnded = true;
 	// Give remaining gladiator a rank of 1 by adding to the beginning of the dead list
 	if(Model.I.gladiators.length == 1) {
 		this.deadGladiators.unshift(Model.I.gladiators[0]);
@@ -71,8 +75,6 @@ Game.prototype.endGame = function() {
 	}
 	// Remove last place from game
 	this.gladiatorDict[this.deadGladiators[this.deadGladiators.length-1].letter] = undefined;
-	// Return to the main menu
-	Engine.I.state = new Selection(this.gladiatorDict);
 };
 
 Game.prototype.update = function() {
@@ -81,5 +83,10 @@ Game.prototype.update = function() {
 	Model.I.draw("background");
 	Model.I.draw("gladiators");
 	// Check for win condition
-	if(Model.I.gladiators.length <= 1) this.endGame();
+	if(Model.I.gladiators.length <= 1 && !this.gameEnded) this.endGame();
+	// Check for condition to switch back to main menu
+	if(this.gameEnded) {
+		this.gameOverTimer--;
+		if(this.gameOverTimer < 0) Engine.I.state = new Selection(this.gladiatorDict);
+	}
 };
