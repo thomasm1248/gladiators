@@ -9,6 +9,7 @@ var config = {
 	gladiatorattackspeed: 4,
 	gladiatorrotationfriction: 0.99,
 	gladiatorrotationvariance: 0.007,
+	gladiatorcenterbias: 0.03,
 	arenamargin: 20,
 	arenashrinkrate: 0.04,
 	ai: false,

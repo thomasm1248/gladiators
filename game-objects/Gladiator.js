@@ -25,6 +25,24 @@ function Gladiator(letter, name, pos) {
 	this.dead = false;
 }
 
+Gladiator.prototype.calculateCenterBias = function() {
+	// Get the center of the canvas
+	var canvas = Model.I.canvas;
+	var center = new V(canvas.width/2, canvas.height/2);
+	// Get the angle needed to turn towards the center
+	var diff = center.subtract(this.pos);
+	var dirToCenter = diff.dir();
+	var angle = dirToCenter - this.rot;
+	// Map the angle to a number from -PI to PI
+	angle += Math.PI;
+	angle %= Math.PI*2;
+	if(angle < 0) angle += Math.PI*2;
+	angle -= Math.PI;
+	// Multiply the center bias by the sign of the angle
+	var bias = angle / Math.abs(angle) * config.gladiatorcenterbias;
+	return bias;
+};
+
 Gladiator.prototype.keepInBounds = function() {
 	if(this.pos.x <= Arena.I.margin) this.pos.x = Arena.I.margin + config.arenashrinkrate;
 	if(this.pos.y <= Arena.I.margin) this.pos.y = Arena.I.margin + config.arenashrinkrate;
@@ -54,6 +72,9 @@ Gladiator.prototype.wander = function() {
 	this.rotVel *= config.gladiatorrotationfriction;
 	this.rotVel += (Math.random() * 2 - 1) * config.gladiatorrotationvariance;
 	this.rot += this.rotVel;
+
+	// Rotate towards center
+	this.rot += this.calculateCenterBias();
 
 	// Move in facing direction
 	var move = V.trig(this.rot, config.gladiatorspeed);
