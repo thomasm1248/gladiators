@@ -80,6 +80,7 @@ Game.prototype.endGame = function() {
 Game.prototype.update = function() {
 	this.handleGladiatorControls();
 	this.updateGladiators();
+	Arena.I.update();
 	Model.I.draw("background");
 	Model.I.draw("gladiators");
 	// Check for win condition

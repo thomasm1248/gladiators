@@ -29,8 +29,8 @@ function Transition(gladiators, translation) {
 		// Randomly decide on new position and rotation
 		gladiator.endRot = Math.PI * 2 * Math.random();
 		gladiator.endPos = new V(
-			Math.random() * (Model.I.canvas.width - config.arenamargin*2) + config.arenamargin,
-			Math.random() * (Model.I.canvas.height - config.arenamargin*2) + config.arenamargin
+			Math.random() * (Model.I.canvas.width - Arena.I.margin*2) + Arena.I.margin,
+			Math.random() * (Model.I.canvas.height - Arena.I.margin*2) + Arena.I.margin
 		);
 	}
 	// Animation stuff

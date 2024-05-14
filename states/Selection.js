@@ -53,6 +53,9 @@ function Selection(gladiatorDict) {
 	this.translation.accum(center);
 
 	Model.I.init();
+
+	// Setup arena
+	new Arena();
 }
 
 Selection.prototype.drawKeyboard = function() {

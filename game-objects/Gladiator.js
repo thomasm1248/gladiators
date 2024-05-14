@@ -25,10 +25,17 @@ function Gladiator(letter, name, pos) {
 	this.dead = false;
 }
 
+Gladiator.prototype.keepInBounds = function() {
+	if(this.pos.x <= Arena.I.margin) this.pos.x = Arena.I.margin + config.arenashrinkrate;
+	if(this.pos.y <= Arena.I.margin) this.pos.y = Arena.I.margin + config.arenashrinkrate;
+	if(this.pos.x >= Model.I.canvas.width - Arena.I.margin) this.pos.x = Model.I.canvas.width - Arena.I.margin - config.arenashrinkrate;
+	if(this.pos.y >= Model.I.canvas.height - Arena.I.margin) this.pos.y = Model.I.canvas.height - Arena.I.margin - config.arenashrinkrate;
+};
+
 Gladiator.prototype.wander = function() {
 	// Stay in bounds
-	if(this.pos.x < config.arenamargin ||
-	   this.pos.x > Model.I.canvas.width - config.arenamargin
+	if(this.pos.x <= Arena.I.margin ||
+	   this.pos.x > Model.I.canvas.width - Arena.I.margin
 	   ) {
 		this.rot -= Math.PI / 2;
 		this.rot *= -1;
@@ -36,16 +43,13 @@ Gladiator.prototype.wander = function() {
 		this.rotVel = 0;
 	}
 	if(
-	   this.pos.y < config.arenamargin ||
-	   this.pos.y > Model.I.canvas.height - config.arenamargin
+	   this.pos.y <= Arena.I.margin ||
+	   this.pos.y > Model.I.canvas.height - Arena.I.margin
 	   ) {
 		this.rot *= -1;
 		this.rotVel = 0;
 	}
-	if(this.pos.x < config.arenamargin) this.pos.x = config.arenamargin;
-	if(this.pos.y < config.arenamargin) this.pos.y = config.arenamargin;
-	if(this.pos.x > Model.I.canvas.width - config.arenamargin) this.pos.x = Model.I.canvas.width - config.arenamargin;
-	if(this.pos.y > Model.I.canvas.height - config.arenamargin) this.pos.y = Model.I.canvas.height - config.arenamargin;
+	this.keepInBounds();
 	// Retain some previous rotation force and rotate randomly
 	this.rotVel *= config.gladiatorrotationfriction;
 	this.rotVel += (Math.random() * 2 - 1) * config.gladiatorrotationvariance;
@@ -88,10 +92,10 @@ Gladiator.prototype.charge = function() {
 		}
 	}
 	// Check if near edges
-	if(this.pos.x < config.arenamargin ||
-	   this.pos.y < config.arenamargin ||
-	   this.pos.x > Model.I.canvas.width - config.arenamargin ||
-	   this.pos.y > Model.I.canvas.height - config.arenamargin
+	if(this.pos.x < Arena.I.margin ||
+	   this.pos.y < Arena.I.margin ||
+	   this.pos.x > Model.I.canvas.width - Arena.I.margin ||
+	   this.pos.y > Model.I.canvas.height - Arena.I.margin
 	   ) {
 		this.state = "wander";
 	}
@@ -127,6 +131,7 @@ Gladiator.prototype.update = function() {
 			this.charge();
 			break;
 	}
+	this.keepInBounds();
 	// Let system know if this gladiator needs to be removed
 	return this.dead;
 };

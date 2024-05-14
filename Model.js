@@ -18,7 +18,7 @@ Model.prototype.drawBackground = function() {
 	ctx.fillStyle = "#b7b7b7";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 	ctx.fillStyle = config.colorground;
-	var margin = config.arenamargin - 20;
+	var margin = Arena.I.margin - 20;
 	ctx.fillRect(margin, margin, canvas.width - margin*2, canvas.height - margin*2);
 };
 
